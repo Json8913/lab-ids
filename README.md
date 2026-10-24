@@ -21,17 +21,25 @@ Install dependencies:
 
     python3 make_sample_pcap.py
 
-This writes a local sample.pcap with synthetic TCP SYN packets and a synthetic DNS query. The generated file is ignored by Git.
+This writes a local `sample.pcap` with synthetic TCP SYN packets and a synthetic DNS query. The generated file is ignored by Git.
 
 ## Usage
 
     python3 detect_syn_scan.py sample.pcap --threshold 3
 
-The expected result is a possible scan alert for source 10.0.0.5. The default threshold is 20.
+The default threshold is 20.
 
-## Smoke check
+## Example run
 
-The generated sample produced an alert for 10.0.0.5 after three unique destination ports were contacted.
+The sample generator creates four synthetic packets. Running the detector with a threshold of three produces:
+
+```text
+Wrote 4 synthetic packets to sample.pcap.
+The file contains no captured network traffic.
+Possible SYN scan: source=10.0.0.5, unique_destination_ports=3
+```
+
+This confirms the detector identifies the expected pattern in the generated lab data.
 
 ## Detection logic
 
@@ -44,7 +52,3 @@ This is a simple detection exercise, not a production IDS. A threshold match is 
 ## Mitigations
 
 Validate alerts against host and firewall logs, review whether the source is expected, and apply network restrictions only after confirming the activity.
-
-## Screenshots
-
-Add a redacted output screenshot using generated or authorised lab traffic.
