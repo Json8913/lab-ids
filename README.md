@@ -13,18 +13,25 @@ The detector reads saved PCAP or PCAPNG files and does not monitor a live interf
 - Python 3.10 or newer
 - Scapy
 
-Install Scapy with:
+Install dependencies:
 
-    python3 -m pip install scapy
+    python3 -m pip install -r requirements.txt
+
+## Generate a safe sample
+
+    python3 make_sample_pcap.py
+
+This writes a local sample.pcap with synthetic TCP SYN packets and a synthetic DNS query. The generated file is ignored by Git.
 
 ## Usage
 
-    python3 detect_syn_scan.py path/to/authorised-capture.pcap
-    python3 detect_syn_scan.py path/to/authorised-capture.pcap --threshold 10
+    python3 detect_syn_scan.py sample.pcap --threshold 3
+
+The expected result is a possible scan alert for source 10.0.0.5. The default threshold is 20.
 
 ## Detection logic
 
-A possible scan is reported when one source sends TCP SYN packets to at least the configured number of unique destination ports. The default threshold is 20.
+A possible scan is reported when one source sends TCP SYN packets to at least the configured number of unique destination ports.
 
 ## Findings and limits
 
@@ -32,7 +39,7 @@ This is a simple detection exercise, not a production IDS. A threshold match is 
 
 ## Mitigations
 
-Validate the alert against host and firewall logs, review whether the source is expected, and apply network restrictions only after confirming the activity.
+Validate alerts against host and firewall logs, review whether the source is expected, and apply network restrictions only after confirming the activity.
 
 ## Screenshots
 
