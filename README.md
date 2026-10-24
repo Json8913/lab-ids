@@ -47,6 +47,10 @@ This confirms the detector identifies the expected pattern in the generated lab 
 
 The detector reads the generated capture offline and reports the expected threshold match.
 
+## Triage guide
+
+See the [SYN scan alert triage playbook](docs/triage-playbook.md) for evidence handling, validation steps, escalation criteria, and outcome notes.
+
 ## Detection logic
 
 A possible scan is reported when one source sends TCP SYN packets to at least the configured number of unique destination ports.
