@@ -29,6 +29,10 @@ This writes a local sample.pcap with synthetic TCP SYN packets and a synthetic D
 
 The expected result is a possible scan alert for source 10.0.0.5. The default threshold is 20.
 
+## Smoke check
+
+The generated sample produced an alert for 10.0.0.5 after three unique destination ports were contacted.
+
 ## Detection logic
 
 A possible scan is reported when one source sends TCP SYN packets to at least the configured number of unique destination ports.
