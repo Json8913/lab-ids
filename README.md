@@ -41,6 +41,12 @@ Possible SYN scan: source=10.0.0.5, unique_destination_ports=3
 
 This confirms the detector identifies the expected pattern in the generated lab data.
 
+## Demo screenshot
+
+![Synthetic IDS run](screenshots/ids-demo.png)
+
+The detector reads the generated capture offline and reports the expected threshold match.
+
 ## Detection logic
 
 A possible scan is reported when one source sends TCP SYN packets to at least the configured number of unique destination ports.
